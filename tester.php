@@ -11,7 +11,7 @@ try
 	$client->username = 'ccc';
 	$client->password = 'ccc';
 
-	CreateTriggeredSend($client);
+	CreateTriggeredSend($client,'TEXTEXT','ExampleEmail@bh.exacttarget.com', 'First','Last');
 
 } catch (SoapFault $e) {
 		var_dump($e);

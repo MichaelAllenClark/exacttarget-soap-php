@@ -1,26 +1,30 @@
 <?php
 
-function CreateTriggeredSend(ExactTargetSoapClient $client)
+function CreateTriggeredSend($client, 
+	$iTriggeredSendCustomerKey, 
+	$iEmailAddress, 
+	$iFirstName, 
+	$iLastName)
 {
     $ts = new ExactTarget_TriggeredSend();
 	
     $tsd = new ExactTarget_TriggeredSendDefinition();
-    $tsd->CustomerKey = 'TEXTEXT';
+    $tsd->CustomerKey = $iTriggeredSendCustomerKey;
     $ts->TriggeredSendDefinition = new SoapVar($tsd, SOAP_ENC_OBJECT, 'TriggeredSendDefinition', "http://exacttarget.com/wsdl/partnerAPI");
 
     $ts->Subscribers = array();
 
     $subscriber = new ExactTarget_Subscriber();
-    $subscriber->EmailAddress = 'ExampleEmail@bh.exacttarget.com';
-    $subscriber->SubscriberKey = 'ExampleEmail@bh.exacttarget.com';
+    $subscriber->EmailAddress = $iEmailAddress;
+    $subscriber->SubscriberKey = $iEmailAddress;
 
     $firstName = new ExactTarget_Attribute();
     $firstName->Name = "First Name";
-    $firstName->Value = "Hiro";
+    $firstName->Value = $iFirstName;
 
     $lastName = new ExactTarget_Attribute();
     $lastName->Name = "Last Name";
-    $lastName->Value = "Protagonist";
+    $lastName->Value = $iLastName;
 
     $sub->Attributes = array($firstName,$lastName);
 
