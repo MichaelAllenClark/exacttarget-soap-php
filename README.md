@@ -12,9 +12,9 @@ This starter project contains some a working project showing how to access [Exac
 ### Required PHP Version
 5.2.3 or greater
 
-### [CODE@ ExactTarget's Developer Community Site] 1]
+### CODE@ ExactTarget's Developer Community Site
 
-For more details on the ExactTarget Email SOAP API, please join our developer community at [CODE.ExactTarget.com][0]
+For more details on the ExactTarget Email SOAP API, please join our developer community at [CODE.ExactTarget.com][1]
 
 ### Required PHP Version
 5.2.3 or greater
