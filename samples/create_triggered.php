@@ -11,13 +11,13 @@ try	{
 	$client->password = $password;
 
 	$ts = new ExactTarget_TriggeredSend();
-    $tsd = new ExactTarget_TriggeredSendDefinition();
+	$tsd = new ExactTarget_TriggeredSendDefinition();
 	$tsd->CustomerKey = "TEXTEXT";
 
 	$sub = new ExactTarget_Subscriber();	
 	$sub->EmailAddress = "example@bh.exacttarget.com";
 	$sub->SubscriberKey = "example@bh.exacttarget.com";
-		
+
 	$ExampleAttribute1 = new ExactTarget_Attribute();
 	$ExampleAttribute1->Name = "First Name";
 	$ExampleAttribute1->Value = "John";
@@ -30,7 +30,7 @@ try	{
 	
 	$ts->Subscribers = array();
 	$ts->Subscribers = $sub;	
-    $ts->TriggeredSendDefinition = $tsd;
+	$ts->TriggeredSendDefinition = $tsd;
 		
 	$object = new SoapVar($ts, SOAP_ENC_OBJECT, 'TriggeredSend', "http://exacttarget.com/wsdl/partnerAPI");
 
