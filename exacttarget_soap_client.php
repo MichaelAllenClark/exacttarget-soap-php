@@ -1085,6 +1085,7 @@ class ExactTarget_AccountUser {
   public $Unlock; // boolean
   public $BusinessUnit; // int
   public $DefaultBusinessUnit; // int
+  public $DefaultApplication; // string
   public $Locale; // ExactTarget_Locale
   public $TimeZone; // ExactTarget_TimeZone
   public $DefaultBusinessUnitObject; // ExactTarget_BusinessUnit
@@ -1183,6 +1184,9 @@ class ExactTarget_Email {
   public $CharacterSet; // string
   public $HasDynamicSubjectLine; // boolean
   public $ContentCheckStatus; // string
+  public $SyncTextWithHTML; // boolean
+  public $PreHeader; // string
+  public $IsApproved; // boolean
 }
 
 class ExactTarget_ContentArea {
@@ -1194,6 +1198,15 @@ class ExactTarget_ContentArea {
   public $Layout; // ExactTarget_LayoutType
   public $IsDynamicContent; // boolean
   public $IsSurvey; // boolean
+  public $BackgroundColor; // string
+  public $BorderColor; // string
+  public $BorderWidth; // int
+  public $Cellpadding; // int
+  public $Cellspacing; // int
+  public $Width; // string
+  public $FontFamily; // string
+  public $HasFontSize; // boolean
+  public $IsLocked; // boolean
 }
 
 class ExactTarget_LayoutType {
@@ -1227,6 +1240,7 @@ class ExactTarget_EventType {
   const Survey='Survey';
   const ForwardedEmail='ForwardedEmail';
   const ForwardedEmailOptIn='ForwardedEmailOptIn';
+  const DeliveredEvent='DeliveredEvent';
 }
 
 class ExactTarget_OpenEvent {
@@ -1240,6 +1254,8 @@ class ExactTarget_BounceEvent {
 }
 
 class ExactTarget_UnsubEvent {
+  public $List; // ExactTarget_List
+  public $IsMasterUnsubscribed; // boolean
 }
 
 class ExactTarget_ClickEvent {
@@ -1263,6 +1279,9 @@ class ExactTarget_ForwardedEmailEvent {
 
 class ExactTarget_ForwardedEmailOptInEvent {
   public $OptInSubscriberKey; // string
+}
+
+class ExactTarget_DeliveredEvent {
 }
 
 class ExactTarget_Subscriber {
@@ -1519,6 +1538,9 @@ class ExactTarget_TriggeredSendDefinition {
   public $SendSourceDataExtension; // ExactTarget_DataExtension
   public $IsAlwaysOn; // boolean
   public $DisableOnEmailBuildError; // boolean
+  public $PreHeader; // string
+  public $ReplyToAddress; // string
+  public $ReplyToDisplayName; // string
 }
 
 class ExactTarget_TriggeredSendExclusionList {
@@ -1673,6 +1695,8 @@ class ExactTarget_SenderProfile {
   public $DataRetentionPeriodLength; // short
   public $DataRetentionPeriodUnitOfMeasure; // ExactTarget_RecurrenceTypeEnum
   public $ReplyManagementRuleSet; // ExactTarget_APIObject
+  public $ReplyToAddress; // string
+  public $ReplyToDisplayName; // string
 }
 
 class ExactTarget_DeliveryProfile {
@@ -1771,6 +1795,9 @@ class ExactTarget_EmailSendDefinition {
   public $IsSeedListSend; // boolean
   public $TimeZone; // ExactTarget_TimeZone
   public $SeedListOccurance; // int
+  public $PreHeader; // string
+  public $ReplyToAddress; // string
+  public $ReplyToDisplayName; // string
 }
 
 class ExactTarget_TrackingUsers {
@@ -1941,6 +1968,15 @@ class ExactTarget_MessageSendActivity {
 }
 
 class ExactTarget_SmsSendActivity {
+}
+
+class ExactTarget_MobileConnectRefreshListActivity {
+}
+
+class ExactTarget_MobileConnectSendSmsActivity {
+}
+
+class ExactTarget_MobilePushSendMessageActivity {
 }
 
 class ExactTarget_ReportActivity {
@@ -2118,6 +2154,10 @@ class ExactTarget_ImportDefinition {
   public $StandardQuotedStrings; // boolean
   public $Filter; // string
   public $DateFormattingLocale; // ExactTarget_Locale
+  public $DeleteFile; // boolean
+  public $SourceObject; // ExactTarget_APIObject
+  public $DestinationType; // int
+  public $SubscriptionDefinitionId; // string
 }
 
 class ExactTarget_FieldMaps {
@@ -2153,6 +2193,7 @@ class ExactTarget_FilterDefinition {
   public $Description; // string
   public $DataSource; // ExactTarget_APIObject
   public $DataFilter; // ExactTarget_FilterPart
+  public $CategoryID; // int
 }
 
 class ExactTarget_GroupDefinition {
@@ -2273,6 +2314,27 @@ class ExactTarget_Portfolio {
   public $CategoryType; // string
 }
 
+class ExactTarget_Template {
+  public $TemplateName; // string
+  public $LayoutHTML; // string
+  public $BackgroundColor; // string
+  public $BorderColor; // string
+  public $BorderWidth; // int
+  public $Cellpadding; // int
+  public $Cellspacing; // int
+  public $Width; // int
+  public $Align; // string
+  public $ActiveFlag; // int
+  public $CategoryID; // int
+  public $CategoryType; // string
+  public $OwnerID; // int
+  public $HeaderContent; // ExactTarget_ContentArea
+  public $Layout; // ExactTarget_Layout
+  public $TemplateSubject; // string
+  public $IsTemplateSubjectLocked; // boolean
+  public $PreHeader; // string
+}
+
 class ExactTarget_Layout {
   public $LayoutName; // string
 }
@@ -2391,6 +2453,139 @@ class ExactTarget_PublicationSubscriber {
   public $Subscriber; // ExactTarget_Subscriber
 }
 
+class ExactTarget_Automation {
+  public $Schedule; // ExactTarget_ScheduleDefinition
+  public $AutomationTasks; // ExactTarget_AutomationTasks
+  public $IsActive; // boolean
+  public $AutomationSource; // ExactTarget_AutomationSource
+  public $Status; // int
+  public $Notifications; // ExactTarget_Notifications
+  public $ScheduledTime; // dateTime
+  public $AutomationType; // string
+}
+
+class ExactTarget_AutomationTasks {
+  public $AutomationTask; // ExactTarget_AutomationTask
+}
+
+class ExactTarget_Notifications {
+  public $Notification; // ExactTarget_AutomationNotification
+}
+
+class ExactTarget_AutomationSource {
+  public $AutomationSourceID; // string
+  public $AutomationSourceType; // string
+}
+
+class ExactTarget_AutomationInstances {
+  public $InstanceCount; // int
+  public $AutomationInstanceCollection; // ExactTarget_AutomationInstanceCollection
+}
+
+class ExactTarget_AutomationInstanceCollection {
+  public $AutomationInstance; // ExactTarget_AutomationInstance
+}
+
+class ExactTarget_AutomationInstance {
+  public $AutomationID; // string
+  public $StatusMessage; // string
+  public $StatusLastUpdate; // dateTime
+  public $TaskInstances; // ExactTarget_TaskInstances
+  public $StartTime; // dateTime
+  public $CompletedTime; // dateTime
+}
+
+class ExactTarget_TaskInstances {
+  public $AutomationTaskInstance; // ExactTarget_AutomationTaskInstance
+}
+
+class ExactTarget_AutomationNotification {
+  public $Name; // string
+  public $Description; // string
+  public $Address; // string
+  public $Body; // string
+  public $ChannelType; // string
+  public $NotificationType; // string
+}
+
+class ExactTarget_AutomationTask {
+  public $AutomationTaskType; // string
+  public $Name; // string
+  public $Description; // string
+  public $Automation; // ExactTarget_Automation
+  public $Sequence; // int
+  public $Activities; // ExactTarget_Activities
+}
+
+class ExactTarget_Activities {
+  public $Activity; // ExactTarget_AutomationActivity
+}
+
+class ExactTarget_AutomationTaskInstance {
+  public $StepDefinition; // ExactTarget_AutomationTask
+  public $AutomationInstance; // ExactTarget_AutomationInstance
+  public $ActivityInstances; // ExactTarget_ActivityInstances
+}
+
+class ExactTarget_ActivityInstances {
+  public $ActivityInstance; // ExactTarget_AutomationActivityInstance
+}
+
+class ExactTarget_AutomationActivity {
+  public $Name; // string
+  public $Description; // string
+  public $IsActive; // boolean
+  public $Definition; // ExactTarget_APIObject
+  public $Automation; // ExactTarget_Automation
+  public $AutomationTask; // ExactTarget_AutomationTask
+  public $Sequence; // int
+  public $ActivityObject; // ExactTarget_APIObject
+}
+
+class ExactTarget_AutomationActivityInstance {
+  public $ActivityID; // string
+  public $AutomationID; // string
+  public $SequenceID; // int
+  public $Status; // int
+  public $StatusLastUpdate; // dateTime
+  public $StatusMessage; // string
+  public $ActivityDefinition; // ExactTarget_AutomationActivity
+  public $AutomationInstance; // ExactTarget_AutomationInstance
+  public $AutomationTaskInstance; // ExactTarget_AutomationTaskInstance
+  public $ScheduledTime; // dateTime
+  public $StartTime; // dateTime
+  public $CompletedTime; // dateTime
+}
+
+class ExactTarget_AutomationTypes {
+  const scheduled='scheduled';
+  const triggered='triggered';
+}
+
+class ExactTarget_AutomationSourceTypes {
+  const Unknown='Unknown';
+  const FileTrigger='FileTrigger';
+  const UserInterface='UserInterface';
+  const UserAPI='UserAPI';
+  const RESTApi='RESTApi';
+}
+
+class ExactTarget_AutomationStatus {
+  const Error='Error';
+  const BuildingError='BuildingError';
+  const Building='Building';
+  const Ready='Ready';
+  const Running='Running';
+  const Paused='Paused';
+  const Stopped='Stopped';
+  const Scheduled='Scheduled';
+  const AwaitingTrigger='AwaitingTrigger';
+  const InactiveTrigger='InactiveTrigger';
+  const Skipped='Skipped';
+  const Unknown='Unknown';
+  const _New='New';
+}
+
 class ExactTarget_PlatformApplication {
   public $Package; // ExactTarget_PlatformApplicationPackage
   public $Packages; // ExactTarget_PlatformApplicationPackage
@@ -2427,6 +2622,7 @@ class ExactTarget_SuppressionListContext {
   public $Send; // ExactTarget_Send
   public $Definition; // ExactTarget_SuppressionListDefinition
   public $AppliesToAllSends; // boolean
+  public $SenderProfile; // ExactTarget_SenderProfile
 }
 
 class ExactTarget_SuppressionListContextEnum {
@@ -2435,11 +2631,18 @@ class ExactTarget_SuppressionListContextEnum {
   const SendClassification='SendClassification';
   const Send='Send';
   const _Global='Global';
+  const SenderProfile='SenderProfile';
 }
 
 class ExactTarget_SuppressionListData {
   public $Properties; // ExactTarget_Properties
 }
 
+
+class ExactTarget_SendAdditionalAttribute {
+  public $Email; // ExactTarget_Email
+  public $Name; // string
+  public $Value; // string
+}
 
 ?> 
