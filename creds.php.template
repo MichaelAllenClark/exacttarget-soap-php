@@ -2,7 +2,7 @@
 $username = "ccc";
 $password = "ccc";
 
-// There are multiple datacenters for ExactTarget, this may be difference for your accont
+// There are multiple datacenters for ExactTarget, this may be different for your accont
 // For more Info: http://help.exacttarget.com/en/documentation/exacttarget/resources/accessing_the_exacttarget_application/
 $wsdl = "https://webservice.exacttarget.com/etframework.wsdl";
 ?>
