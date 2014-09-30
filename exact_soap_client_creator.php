@@ -87,7 +87,7 @@ class ExactTargetSoapClient extends SoapClient {
 
 		\$objWSSE->addUserToken(\$this->username, \$this->password, FALSE);
 
-		return parent::__doRequest(\$objWSSE->saveXML(), \$location, \$saction, \$version);
+		return parent::__doRequest(\$objWSSE->saveXML(), \$location, \$saction, \$version, \$one_way = 0);
    }
 
 }

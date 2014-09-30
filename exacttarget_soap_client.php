@@ -13,7 +13,7 @@ class ExactTargetSoapClient extends SoapClient {
 
 		$objWSSE->addUserToken($this->username, $this->password, FALSE);
 
-		return parent::__doRequest($objWSSE->saveXML(), $location, $saction, $version);
+		return parent::__doRequest($objWSSE->saveXML(), $location, $saction, $version, $one_way = 0);
    }
 
 }
@@ -2158,6 +2158,7 @@ class ExactTarget_ImportDefinition {
   public $SourceObject; // ExactTarget_APIObject
   public $DestinationType; // int
   public $SubscriptionDefinitionId; // string
+  public $EncodingCodePage; // int
 }
 
 class ExactTarget_FieldMaps {
@@ -2350,6 +2351,12 @@ class ExactTarget_QueryDefinition {
   public $CategoryID; // int
 }
 
+class ExactTarget_HiveQueryDefinition {
+  public $QueryDefinition; // string
+  public $Status; // string
+  public $CategoryID; // int
+}
+
 class ExactTarget_IntegrationProfile {
   public $ProfileID; // string
   public $SubscriberKey; // string
@@ -2500,12 +2507,11 @@ class ExactTarget_TaskInstances {
 }
 
 class ExactTarget_AutomationNotification {
-  public $Name; // string
-  public $Description; // string
   public $Address; // string
   public $Body; // string
   public $ChannelType; // string
   public $NotificationType; // string
+  public $AutomationID; // string
 }
 
 class ExactTarget_AutomationTask {
@@ -2555,6 +2561,12 @@ class ExactTarget_AutomationActivityInstance {
   public $ScheduledTime; // dateTime
   public $StartTime; // dateTime
   public $CompletedTime; // dateTime
+}
+
+class ExactTarget_AutomationTestType {
+  const OK='OK';
+  const UnplannedOutage='UnplannedOutage';
+  const InMaintenance='InMaintenance';
 }
 
 class ExactTarget_AutomationTypes {
@@ -2643,6 +2655,60 @@ class ExactTarget_SendAdditionalAttribute {
   public $Email; // ExactTarget_Email
   public $Name; // string
   public $Value; // string
+}
+
+class ExactTarget_ImportFileDestination {
+  public $TemplateCustomObject; // ExactTarget_DataExtension
+  public $FileTransferLocation; // ExactTarget_FileTransferLocation
+  public $FileSpec; // string
+  public $EncodingCodePage; // int
+  public $HasColumnHeader; // boolean
+  public $FieldDelimiter; // string
+  public $RowDelimiter; // string
+  public $NullValue; // string
+  public $BooleanFormat; // string
+  public $DateTimeFormat; // string
+  public $StringIdentifier; // string
+  public $EscapeSequence; // string
+}
+
+class ExactTarget_ContactEvent {
+  public $ContactID; // long
+  public $ContactKey; // string
+  public $EventDefinitionKey; // string
+  public $Data; // ExactTarget_Data
+}
+
+class ExactTarget_Data {
+  public $AttributeSet; // ExactTarget_AttributeSet
+}
+
+class ExactTarget_AttributeSet {
+  public $Id; // string
+  public $Key; // string
+  public $Name; // string
+  public $Items; // ExactTarget_Items
+}
+
+class ExactTarget_Items {
+  public $Item; // ExactTarget_AttributeValueContainer
+}
+
+class ExactTarget_AttributeValueContainer {
+  public $Values; // ExactTarget_Values
+}
+
+
+class ExactTarget_AttributeValue {
+  public $Id; // string
+  public $Key; // string
+  public $Name; // string
+  public $Value; // string
+}
+
+class ExactTarget_ContactEventCreateResult {
+  public $EventInstanceID; // string
+  public $AsyncRequestID; // long
 }
 
 ?> 

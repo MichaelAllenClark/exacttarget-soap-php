@@ -1,5 +1,4 @@
 # ExactTarget SOAP Starter Project for PHP
-
 This starter project contains some a working project showing how to access [ExactTarget][0]'s SOAP API using PHP. 
 
 ## Prerequisites
